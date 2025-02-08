@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Inter:opsz,wght@14..32,500&family=Pacifico&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Inter:opsz,wght@14..32,500&family=Pacifico&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <title>Valentines Day</title>
+  <title>Special to you</title>
   <style>
     body {
       font-family: "Archivo", serif !important;
@@ -33,25 +33,44 @@
         transform: translateY(-10px);
       }
     }
+
+    /* Animated arrow that slides to the right then resets */
+    .arrow-animation {
+      display: inline-block;
+      animation: slideArrow 1.5s infinite;
+    }
+
+    @keyframes slideArrow {
+      0% { transform: translateX(0); }
+      50% { transform: translateX(5px); }
+      100% { transform: translateX(0); }
+    }
   </style>
 </head>
 <body class="gradient-background">
   <div class="flex items-center justify-center h-screen">
     <div class="flex flex-col items-center p-4">
       <img id="imageDisplay" src="./images/image1.gif" alt="Cute kitten with flowers" class="rounded-md h-[300px]" style="object-fit: cover;" />
-      <h2 id="valentineQuestion" class="text-4xl font-bold italic text-[#bd1e59] my-4 text-center">Will you be my Valentine?</h2>
+      <h2 id="valentineQuestion" class="text-4xl font-bold italic text-[#bd1e59] my-4 text-center">
+        Will you be my Valentine vyshu...?
+      </h2>
       <div class="flex gap-4 pt-[20px] items-center" id="responseButtons">
         <button id="yesButton"
-          class="bounce2 inline-flex items-center justify-center whitespace-nowrap rounded-xl text-[20px] font-medium disabled:pointer-events-none disabled:opacity-50 hover:bg-green-400 min-h-12 min-w-[75px] px-4 py-2 bg-green-500 text-white transition ">
+          class="bounce2 inline-flex items-center justify-center whitespace-nowrap rounded-xl text-[20px] font-medium disabled:pointer-events-none disabled:opacity-50 hover:bg-green-400 min-h-12 min-w-[75px] px-4 py-2 bg-green-500 text-white transition">
           Yes
         </button>
         <button id="noButton"
-          class="inline-flex items-center justify-center whitespace-nowrap rounded-xl text-[20px] font-medium transition disabled:pointer-events-none disabled:opacity-50 hover:bg-red-700 h-12 min-w-[75px] w-auto px-4 py-2 bg-red-500 text-white ">
+          class="inline-flex items-center justify-center whitespace-nowrap rounded-xl text-[20px] font-medium transition disabled:pointer-events-none disabled:opacity-50 hover:bg-red-700 h-12 min-w-[75px] w-auto px-4 py-2 bg-red-500 text-white">
           No
         </button>
       </div>
     </div>
   </div>
+
+  <!-- Footer -->
+  <footer class="fixed bottom-0 right-0 m-4 text-sm text-gray-700">
+    copy rights @ <a href="https://example.com" target="_blank" class="text-blue-500 hover:underline">Mr_Bhogesh</a>
+  </footer>
 
   <script type="module">
     import confetti from 'https://cdn.skypack.dev/canvas-confetti';
@@ -79,12 +98,12 @@
       if (noClickCount < 5) {
         noClickCount++;
         imageDisplay.src = imagePaths[noClickCount];
-        buttonHeight += 17; // Increase height by 5px on each click
+        buttonHeight += 17; // Increase height on each click
         buttonWidth += 25;
-        fontSize += 20; // Increase font size by 1px on each click
-        yesButton.style.height = `${buttonHeight}px`; // Update button height
+        fontSize += 20; // Increase font size on each click
+        yesButton.style.height = `${buttonHeight}px`;
         yesButton.style.width = `${buttonWidth}px`;
-        yesButton.style.fontSize = `${fontSize}px`; // Update font size
+        yesButton.style.fontSize = `${fontSize}px`;
         if (noClickCount < 6) {
           noButton.textContent = ["No", "Are you sure?", "Pookie please", "Don't do this to me :(", "You're breaking my heart", "I'm gonna cry..."][noClickCount];
         }
@@ -92,10 +111,46 @@
     });
   
     yesButton.addEventListener('click', () => {
-      imageDisplay.src = './images/image7.gif'; // Change to image7.gif
-      valentineQuestion.textContent = "Yayyyy! You clicked YES? Great, my mom already likes you. 😂"; // Change the question text
-      responseButtons.style.display = 'none'; // Hide both buttons
-      confetti(); // Trigger confetti animation
+      imageDisplay.src = './images/image7.gif';
+      valentineQuestion.textContent = "Hooray, you just hit the YES button! I promise a journey filled with laughter, sweet surprises, and a little bit of magic—just for us.";
+      responseButtons.style.display = 'none';
+      confetti();
+
+      // Append the Open Letter button and letter content if not already added
+      if (!document.getElementById('openLetterButton')) {
+        const container = document.querySelector('.flex.flex-col.items-center.p-4');
+        const openLetterButton = document.createElement('button');
+        openLetterButton.id = 'openLetterButton';
+        openLetterButton.className = 'mt-4 px-4 py-2 bg-pink-500 text-white rounded-lg flex items-center gap-2';
+        openLetterButton.innerHTML = 'Open Letter <span class="arrow-animation inline-block">→ ❤️</span>';
+        container.appendChild(openLetterButton);
+
+        const letterContent = document.createElement('div');
+        letterContent.id = 'letterContent';
+        letterContent.className = 'hidden p-4 mt-4 bg-white rounded shadow-lg text-gray-800';
+        letterContent.innerHTML = `
+          <p>Dear Vyshu,</p>
+    <p>
+      Every time you cross my path, the world shimmers with a quiet brilliance.
+      Your laughter carries a gentle warmth that transforms ordinary days into secret celebrations.
+    </p>
+    <p>
+      In the glow of your smile, I discover soft echoes of cherished dreams and a promise of unspoken wonder.
+      Each shared glance writes a delicate story of hope, as subtle as the morning light.
+    </p>
+    <p>
+      I marvel at how you effortlessly turn fleeting moments into treasures, silently weaving magic into my everyday life.
+      May our journey together bloom like a hidden garden of delightful surprises and endless inspiration.
+    </p>
+    <p>Forever in awe,</p>
+    <p>@your_Men</p>
+        `;
+        container.appendChild(letterContent);
+
+        openLetterButton.addEventListener('click', () => {
+          letterContent.classList.toggle('hidden');
+        });
+      }
     });
   </script>  
 </body>
